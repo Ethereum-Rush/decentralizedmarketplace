@@ -1,507 +1,64 @@
+<!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<title>{Title}</title>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" crossorigin="anonymous">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"crossorigin="anonymous">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to the decentralized marketplace!</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 
 
 
+<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
 
-<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Hind+Guntur:wght@300&display=swap" rel="stylesheet"> 
+  </head>
+  <body>
+  <section class="section">
+    <div class="container">
+      <h1 class="title">
+        Decentralized marketplace
+      </h1>
+      <p class="subtitle">
+        Buy sell whatever you want stay  <strong>free</strong>!
+      </p>
 
-<style>
-body{
-    background-color:#3A3D4E;
-}
-#navbar {
-    width:100;
-    height:50px;
-    background-image:url('https://static.tumblr.com/xijmxxb/MPXqa86t6/dmheader.jpg');
-}
-
-#dmhead {
-    font-family: 'Hind Guntur', sans-serif;
-    color:white;
-    margin:0 auto;
-    top:16px;
-    position:relative;
-}
-.pimgs{
-    width:200px;
-}
-
-
-body {
-  background: #E2E2E2;
-  padding: 0px;
-}
-
-p{font-family: 'Hind Guntur', sans-serif;}
-.foodbox h3 {
-  font-family: 'Hind Guntur', sans-serif;
-  margin-top: 6px !important;
-  font-size: 13px;
-  font-weight: 500;
-  margin-bottom: 0px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  max-height: 30px;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-}
-.foodbox .thumbnail {
-  padding: 0px !important;
-  border: 0px solid rgba(78, 78, 78, 0.36);
-  box-shadow: 1px 1px 1px #929292;
-  border-radius: 2px;
-  max-width: 262px;
-  max-height: 238px;
-  background: #fff;
-}
-.foodbox p {
-  color: rgba(51, 51, 51, 0.63);
-}
-.foodbox .responsive p {
-  margin: 0 0 0px !important;
-  font-size: 14px;
-  font-family: 'Hind Guntur', sans-serif;
-}
-.foodbox .responsive {
-  float: left;
-  box-sizing: border-box;
-}
-.foodbox .vegnonveg {
-  width: 12%;
-  padding: 14px 5px;
-}
-.foodbox .contentPart {
-  width: 63%;
-  padding: 5px 5px;
-}
-.foodbox .cartPart {
-  width: 37%;
-  padding: 13px 5px;
-}
-.foodbox .thumbnail .caption {
-  padding: 5px 9px;
-}
-.foodbox .pricesection {
-  position: absolute;
-  top: 5px;
-  z-index: 99999;
-}
-.foodbox .pricesection {
-  /*       width: 262px; */
-  /* background: rgba(0,0,0,0.4); */
-  max-width: 262px;
-  width: 90%;
-}
-.foodbox .pricesection h3 {
-  color: #fff !important;
-}
-.foodbox .pricesection .h3 {
-  color: #fff !important;
-  background: rgba(0, 0, 0, 0.47);
-  border-radius: 4px;
-  font-size: 16px;
-  padding: 5px;
-  font-family: 'Hind Guntur', sans-serif;
-  font-weight: 500;
-  cursor: default;
-  box-sizing: border-box;
-  -webkit-transition: all 0.25s ease;
-  -moz-transition: all 0.25s ease;
-  -ms-transition: all 0.25s ease;
-  -o-transition: all 0.25s ease;
-  transition: all 0.25s ease;
-}
-.foodbox .pricesection .h3:hover {
-  background: rgba(0, 0, 0, 0.77);
-}
-.foodbox .fifty {
-  width: 50%;
-  padding: 8px 10px;
-}
-.foodbox .addRemoveButton {
-  height: 28px;
-  width: 28px;
-  border-radius: 50%;
-  background: transparent;
-  /* color: #333; */
-  line-height: 0.9;
-  font-size: 15px;
-  font-family: 'Hind Guntur', sans-serif;
-  -webkit-transition: all 0.25s ease;
-  -moz-transition: all 0.25s ease;
-  -ms-transition: all 0.25s ease;
-  -o-transition: all 0.25s ease;
-  transition: all 0.25s ease;
-}
-.foodbox .addButton {
-  border-color: #EA485F;
-  color: #EA485F;
-}
-.foodbox .addButton:hover {
-  background: #EA485F;
-  color: #fff;
-}
-.foodbox .removeButton {
-  border-color: rgba(0, 0, 0, 0.45);
-  color: rgba(0, 0, 0, 0.45);
-  -webkit-transition: all 0.25s ease;
-  -moz-transition: all 0.25s ease;
-  -ms-transition: all 0.25s ease;
-  -o-transition: all 0.25s ease;
-  transition: all 0.25s ease;
-}
-.foodbox .removeButton:hover {
-  border-color: rgba(0, 0, 0, 0.69);
-  color: rgba(0, 0, 0, 0.69);
-}
-.foodbox .vegNonvegIcon {
-  margin-top: -4px;
-}
-.foodbox img {
-  border-top-left-radius: 2px;
-  border-top-right-radius: 2px;
-}
-.foodbox .onlyaddButton {
-  border: #EA485F;
-  background: transparent;
-  color: #EA485F;
-  border: 1px solid #EA485F;
-  padding: 4px 12px;
-  transition: all 0.25s ease;
-}
-.foodbox .onlyaddButton:hover {
-  background: #EA485F;
-  color: #fff;
-}
-.foodbox p.foodDesc {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  max-height: 20px;
-  /* fallback */
-  -webkit-line-clamp: 1;
-  /* number of lines to show */
-  -webkit-box-orient: vertical;
-}
-.foodbox .availOption {
-  position: absolute;
-  bottom: 93px;
-  height: 0px;
-  z-index: 999;
-}
-.foodbox .itsAvaliable {
-  padding: 2px 5px;
-  background: #4CAF50;
-  color: #fff;
-}
-.foodbox .itsSoldOut {
-  padding: 2px 5px;
-  background: #FF5722;
-  color: #fff;
-}
-.foodbox .fillingFast {
-  padding: 2px 5px;
-  background: #FF9800;
-  color: #fff !important;
-}
-.foodbox .clearfix {
-  max-width: 262px;
-  /* max-height: 238px; */
-}
-.foodbox .foodMoreDesc {
-  display: none;
-  padding: 14px;
-  background: #fff;
-  position: absolute;
-  bottom: 21px;
-  left: auto;
-  max-width: 262px;
-  z-index: 999;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  /* display: -webkit-box; */
-  max-height: 122px;
-  -webkit-line-clamp: 5;
-  -webkit-box-orient: vertical;
-  color: #6B6B6B;
-  margin-top: 10px;
-}
-.foodbox .closeDesc {
-  color: #fff;
-  background: #FF5722;
-  height: 22px;
-  width: 22px;
-  display: block;
-  text-align: center;
-  border-radius: 2px;
-  position: static;
-  text-decoration: none;
-  float: right;
-}
-.foodbox .closeDesc i {
-  color: #fff;
-}
-.foodbox p.foodDesc a {
-  color: #E91E63;
-  text-decoration: none;
-}
-.foodbox p.foodDesc a:hover {
-  color: #E6539C;
-}
-
-.container {
-    padding:20px;
-}
-
-
-
-</style>
-    
-</head>
-
-
-<body>
-
-<div id="navbar">
-<div class="menuCenter">
-    <center><p id="dmhead">Decentralized Marketplace</p></center>
-</div>
-</div>
-
-<div class="container">
-      <div class="row">
-      
-      
-      
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                  <div class="clearfix foodbox center-block">
-                        <div class="pricesection">
-                              <div class="responsive fifty">
-                                    <span class="h3">
-                                          EER. 300
-                                    </span>
-                              </div>
-                             
-                        </div>
-                        <div class="availOption">
-                              <span class="itsAvaliable">
-                                    Avaliable
-                              </span>
-                        </div>
-                        <div class="thumbnail">
-                              <img src="https://bico.media/7db5e3ccdf68ab2e611885323cd6905cb835bf29482f7ebdb70e553ff959b1c0" alt="">
-                              <div class="caption">
-                                    <div class="contentInline clearfix">
-                                          <div class="responsive contentPart">  
-                                                <div class="clearfix">
-                                                      <h3 class="pull-left">Futbol arena oyunu</h3>
-                                                </div>
-                                                <p class="foodDesc">
-                                                      <a href="javascript:void(0)" onclick="showMoreDesc('moreDesc1')">6b323488b2ece9fe5a728cd163c56b2233539568bebe04b5179a7e2d93b7d8c970274dbe529b5c032397a77f728be57e9ab4fb93d8f27072004a684513e808b3</a>
-                                                </p>
-                                          </div>
-                                          
-                                    </div>
-                              </div>
-                        </div>
-                        <div class="foodMoreDesc" id="moreDesc1">
-                              <a href="javascript:void(0)" onclick="showMoreDesc('moreDesc1')">
-                                    <span class="closeDesc">
-                                          <i class="fa fa-times"></i>
-                                    </span>
-                              </a>
-                              <p>
-                               Adınızı soyadınızı ve adresinizi ve kaç tane istediğinizi EER ile birlikte yollayın!
-                              </p>
-                        </div>
-                  </div>
-            </div>
-            
-            
-            
-            
-            
-            
-            
-            
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                  <div class="clearfix foodbox center-block">
-                        <div class="pricesection">
-                              <div class="responsive fifty">
-                                    <span class="h3">
-                                          EER 120
-                                    </span>
-                              </div>
-                              
-                              
-                        </div>
-                        <div class="availOption">
-                              <span class="itsSoldOut">
-                                    Sold Out
-                              </span>
-                        </div>
-                        <div class="thumbnail">
-                              <img src="https://bico.media/45c9c5173bb6ad23a63aa5e8fa1a70adec6f25488fcd6859befdf14c16c15175" alt="">
-                              <div class="caption">
-                                    <div class="contentInline clearfix">
-                                          <div class="responsive contentPart">
-                                                <div class="clearfix">
-                                                      <h3 class="pull-left">Ethereum Erush Flag</h3>
-                                                </div>
-                                                <p class="foodDesc">
-                                                      <a href="javascript:void(0)" onclick="showMoreDesc('moreDesc2')">6b323488b2ece9fe5a728cd163c56b2233539568bebe04b5179a7e2d93b7d8c970274dbe529b5c032397a77f728be57e9ab4fb93d8f27072004a684513e808b3</a>
-                                                </p>
-                                          </div>
-                                          
-                                    </div>
-                              </div>
-                        </div>
-                        <div class="foodMoreDesc" id="moreDesc2">
-                              <a href="javascript:void(0)" onclick="showMoreDesc('moreDesc2')">
-                                    <span class="closeDesc">
-                                          <i class="fa fa-times"></i> Close
-                                    </span>
-                              </a>
-                              <p>
-                              1mx70xm ve %100 polyester.AD-SOYAD-ADRES-NUM-ADET formatında eer ile birlikte yollaybilirsiniz.
-                                  
-                              </p>
-                        </div>
-                  </div>
-            </div>
-            
-            
-            
-            
-            
-               <div class="col-md-3 col-sm-6 col-xs-12">
-                  <div class="clearfix foodbox center-block">
-                        <div class="pricesection">
-                              <div class="responsive fifty">
-                                    <span class="h3">
-                                          EER 120
-                                    </span>
-                              </div>
-                              
-                              
-                        </div>
-                        <div class="availOption">
-                              <span class="itsSoldOut">
-                                    Sold Out
-                              </span>
-                        </div>
-                        <div class="thumbnail">
-                              <img src="https://bico.media/45c9c5173bb6ad23a63aa5e8fa1a70adec6f25488fcd6859befdf14c16c15175" alt="">
-                              <div class="caption">
-                                    <div class="contentInline clearfix">
-                                          <div class="responsive contentPart">
-                                                <div class="clearfix">
-                                                      <h3 class="pull-left">Ethereum Erush Flag</h3>
-                                                </div>
-                                                <p class="foodDesc">
-                                                      <a href="javascript:void(0)" onclick="showMoreDesc('moreDesc2')">6b323488b2ece9fe5a728cd163c56b2233539568bebe04b5179a7e2d93b7d8c970274dbe529b5c032397a77f728be57e9ab4fb93d8f27072004a684513e808b3</a>
-                                                </p>
-                                          </div>
-                                          
-                                    </div>
-                              </div>
-                        </div>
-                        <div class="foodMoreDesc" id="moreDesc2">
-                              <a href="javascript:void(0)" onclick="showMoreDesc('moreDesc2')">
-                                    <span class="closeDesc">
-                                          <i class="fa fa-times"></i> Close
-                                    </span>
-                              </a>
-                              <p>
-                              1mx70xm ve %100 polyester.AD-SOYAD-ADRES-NUM-ADET formatında eer ile birlikte yollaybilirsiniz.
-                                  
-                              </p>
-                        </div>
-                  </div>
-            </div>
-            
-            
-            
-            
-               <div class="col-md-3 col-sm-6 col-xs-12">
-                  <div class="clearfix foodbox center-block">
-                        <div class="pricesection">
-                              <div class="responsive fifty">
-                                    <span class="h3">
-                                          EER 120
-                                    </span>
-                              </div>
-                              
-                              
-                        </div>
-                        <div class="availOption">
-                              <span class="itsSoldOut">
-                                    Sold Out
-                              </span>
-                        </div>
-                        <div class="thumbnail">
-                              <img src="https://bico.media/45c9c5173bb6ad23a63aa5e8fa1a70adec6f25488fcd6859befdf14c16c15175" alt="">
-                              <div class="caption">
-                                    <div class="contentInline clearfix">
-                                          <div class="responsive contentPart">
-                                                <div class="clearfix">
-                                                      <h3 class="pull-left">Ethereum Erush Flag</h3>
-                                                </div>
-                                                <p class="foodDesc">
-                                                      <a href="javascript:void(0)" onclick="showMoreDesc('moreDesc2')">6b323488b2ece9fe5a728cd163c56b2233539568bebe04b5179a7e2d93b7d8c970274dbe529b5c032397a77f728be57e9ab4fb93d8f27072004a684513e808b3</a>
-                                                </p>
-                                          </div>
-                                          
-                                    </div>
-                              </div>
-                        </div>
-                        <div class="foodMoreDesc" id="moreDesc2">
-                              <a href="javascript:void(0)" onclick="showMoreDesc('moreDesc2')">
-                                    <span class="closeDesc">
-                                          <i class="fa fa-times"></i> Close
-                                    </span>
-                              </a>
-                              <p>
-                              1mx70xm ve %100 polyester.AD-SOYAD-ADRES-NUM-ADET formatında eer ile birlikte yollaybilirsiniz.
-                                  
-                              </p>
-                        </div>
-                  </div>
-            </div>
-            
-            
-            
-            
-        
-            
+<div class="columns">
+  <!--first col-->
+  <div class="column">
+  <div class="card">
+  <div class="card-image">
+    <figure class="image is-4by3">
+      <img src="https://bico.media/7db5e3ccdf68ab2e611885323cd6905cb835bf29482f7ebdb70e553ff959b1c0">
+    </figure>
+  </div>
+  <div class="card-content">
+    <div class="media">
+      <div class="media-left">
+        <figure class="image is-48x48">
+          <img src="https://avatars3.githubusercontent.com/u/29823963?s=88&v=4" alt="Placeholder image">
+        </figure>
       </div>
-      <div class="row">
-            <div class="col-md-12">
-                  <p class="text-center">Copyright © satoshin ~ Also upload your images anonymously on add.bico.media with bitcoin SV. </p>
-            </div>
+      <div class="media-content">
+        <p class="title is-6">0xb237223fbeb8269863a7f1c45250d0c928b3d46f</p>
+        <p class="subtitle is-7">2fbb168757eaee0fa64ccd42327b6fe56f22e71106fbdc3a04ec507c3c4c8beadbd31ebf71c12e9a060a59565ae599d2dbf6e4a9de557ccc60e5d6af48f8271e</p>
       </div>
+    </div>
+
+    <div class="content">
+       Herkese merhaba futbol arena oyununu satın almak için memo wallet
+       veya encwallet ile adınızı soyadınızı adresinizi posta kodunuda
+       içerecek şekilde gönderin.Her ihtimale karşılık telegram adresinizi de mesaj olarak gönderin ve kaç adet almak istediğinizi de yine mesaj ile belirtin.
+
+      <br>
+      <time datetime="2016-1-1">300 EER</time>
+    </div>
+  </div>
 </div>
- 
+</div>
+  <!--first col-->
+</div>
 
-
-<script type="text/javascript"> 
-    
-    function showMoreDesc(id) {
-      $('#' + id).toggle(200)
-}
-</script>
-
-
-
-</body>
+    </div>
+  </section>
+  </body>
 </html>
-
