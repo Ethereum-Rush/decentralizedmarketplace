@@ -18,7 +18,7 @@ const web3 = new Web3('https://mainnet.infura.io/v3/914bc8ee83c746a9801f4a57f043
 
 var globalGwei = "30";
 var myaddress = "0xba071D82Cb7073F8E18B52BC70A7755609E92827";
-const contractaddress = "0xf54a5b6Ce31A732c7Ee42593a84641F5C7bF1F4E"
+const contractaddress = "0xbf3Aa8249620F24156A297E4dF37214816506Ceb"
 const cabi = JSON.parse('[{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"NewProduct","type":"event"},{"inputs":[{"internalType":"uint256","name":"tokens","type":"uint256"}],"name":"awithdrawal","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"string","name":"","type":"string"}],"name":"balances","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"newprice","type":"uint256"}],"name":"changeListingprice","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"productid","type":"uint256"},{"internalType":"uint256","name":"newprice","type":"uint256"}],"name":"changepprice","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"productid","type":"uint256"}],"name":"delist","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"listprice","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokens","type":"uint256"},{"internalType":"string","name":"_pkey","type":"string"},{"internalType":"string","name":"_pimage","type":"string"},{"internalType":"uint256","name":"_pprice","type":"uint256"},{"internalType":"string","name":"_pexplain","type":"string"}],"name":"listproduct","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"pcount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_index","type":"uint256"}],"name":"plister","outputs":[{"internalType":"address","name":"","type":"address"},{"internalType":"string","name":"","type":"string"},{"internalType":"string","name":"","type":"string"},{"internalType":"uint256","name":"","type":"uint256"},{"internalType":"string","name":"","type":"string"},{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"}]');
 
 var decentCont = new web3.eth.Contract(cabi, contractaddress, { from: myaddress, gasPrice: web3.utils.toWei(globalGwei, 'gwei')});
@@ -34,7 +34,7 @@ var contractInstance = decentCont;
 
                 var myray = [...Array(result).keys()];
 
-                        for (i = 1; i < result; i++) {
+                        for (i = 0; i < result; i++) {
                            console.log("xxx",i);
                            decentCont.methods.plister(i).call().then(function(result){
                              //console.log("resolt", result);
