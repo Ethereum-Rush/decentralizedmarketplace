@@ -4,12 +4,104 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Welcome to the decentralized marketplace!</title>
+
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ethereum-blockies@0.1.1/blockies.min.js"></script>
+
+
+<script>
+
+const web3 = new Web3('https://mainnet.infura.io/v3/914bc8ee83c746a9801f4a57f0432aff');
+
+var globalGwei = "30";
+var myaddress = "0xba071D82Cb7073F8E18B52BC70A7755609E92827";
+const contractaddress = "0xf54a5b6Ce31A732c7Ee42593a84641F5C7bF1F4E"
+const cabi = JSON.parse('[{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"NewProduct","type":"event"},{"inputs":[{"internalType":"uint256","name":"tokens","type":"uint256"}],"name":"awithdrawal","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"string","name":"","type":"string"}],"name":"balances","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"newprice","type":"uint256"}],"name":"changeListingprice","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"productid","type":"uint256"},{"internalType":"uint256","name":"newprice","type":"uint256"}],"name":"changepprice","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"productid","type":"uint256"}],"name":"delist","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"listprice","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokens","type":"uint256"},{"internalType":"string","name":"_pkey","type":"string"},{"internalType":"string","name":"_pimage","type":"string"},{"internalType":"uint256","name":"_pprice","type":"uint256"},{"internalType":"string","name":"_pexplain","type":"string"}],"name":"listproduct","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"pcount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_index","type":"uint256"}],"name":"plister","outputs":[{"internalType":"address","name":"","type":"address"},{"internalType":"string","name":"","type":"string"},{"internalType":"string","name":"","type":"string"},{"internalType":"uint256","name":"","type":"uint256"},{"internalType":"string","name":"","type":"string"},{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"}]');
+
+var decentCont = new web3.eth.Contract(cabi, contractaddress, { from: myaddress, gasPrice: web3.utils.toWei(globalGwei, 'gwei')});
+
+
+var contractInstance = decentCont;
+
+
+ var getTotalProducts = decentCont.methods.pcount().call().then(function(result){
+                //the result holds your Token Balance that you can assign to a var
+                 console.log(result);
+
+
+                var myray = [...Array(result).keys()];
+
+                        for (i = 1; i < result; i++) {
+                           console.log("xxx",i);
+                           decentCont.methods.plister(i).call().then(function(result){
+                             //console.log("resolt", result);
+                             console.log(result);
+
+                             $("#products").prepend('<div class="columns">'+
+  '<div class="column">'+
+  '<div class="card"><div class="card-image"><figure class="image is-4by3">'+
+  '<img src="'+result[2]+'">'+
+  '</figure></div><div class="card-content"><div class="media"><div class="media-left">'+
+  '<figure class="image is-48x48"><img class="'+i+'" src=""></figure>'+
+  '</div><div class="media-content"><p class="title is-6">'+ result[0]+ '</p>'+
+  '<p class="subtitle is-7">' +  result[1] +' </p></div></div>'+
+   '<div class="content">' +  result[4] + '<br>'+
+      '<time datetime="2016-1-1">' +  result[3] +' EER</time>'+
+    '</div>'+
+ ' </div>'+
+'</div>'+
+'</div>'+
+'</div>');
+
+
+var icon = blockies.create({ // All options are optional
+    seed: result[0], // seed used to generate icon data, default: random
+    //color: '#dfe', // to manually specify the icon color, default: random
+    //bgcolor: '#aaa', // choose a different background color, default: random
+    size: 15, // width/height of the icon in blocks, default: 8
+    scale: 3, // width/height of each block in pixels, default: 4
+    //spotcolor: '#000' // each pixel has a 13% chance of being of a third color,
+    // default: random. Set to -1 to disable it. These "spots" create structures
+    // that look like eyes, mouths and noses.
+  });
+  console.log(icon);
+  $("."+i).attr('src', icon.toDataURL());
 
 
 
-<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+
+                           });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        }
+
+
+});
+
+
+
+
+
+
+</script>
 
   </head>
   <body>
@@ -22,43 +114,23 @@
         Buy sell whatever you want stay  <strong>free</strong>!
       </p>
 
-<div class="columns">
-  <!--first col-->
-  <div class="column">
-  <div class="card">
-  <div class="card-image">
-    <figure class="image is-4by3">
-      <img src="https://bico.media/7db5e3ccdf68ab2e611885323cd6905cb835bf29482f7ebdb70e553ff959b1c0">
-    </figure>
-  </div>
-  <div class="card-content">
-    <div class="media">
-      <div class="media-left">
-        <figure class="image is-48x48">
-          <img src="https://avatars3.githubusercontent.com/u/29823963?s=88&v=4" alt="Placeholder image">
-        </figure>
-      </div>
-      <div class="media-content">
-        <p class="title is-6">0xb237223fbeb8269863a7f1c45250d0c928b3d46f</p>
-        <p class="subtitle is-7">2fbb168757eaee0fa64ccd42327b6fe56f22e71106fbdc3a04ec507c3c4c8beadbd31ebf71c12e9a060a59565ae599d2dbf6e4a9de557ccc60e5d6af48f8271e</p>
-      </div>
-    </div>
+      <div id="products">
 
-    <div class="content">
-       Herkese merhaba futbol arena oyununu satın almak için memo wallet
-       veya encwallet ile adınızı soyadınızı adresinizi posta kodunuda
-       içerecek şekilde gönderin.Her ihtimale karşılık telegram adresinizi de mesaj olarak gönderin ve kaç adet almak istediğinizi de yine mesaj ile belirtin.
 
-      <br>
-      <time datetime="2016-1-1">300 EER</time>
-    </div>
-  </div>
-</div>
-</div>
-  <!--first col-->
-</div>
+
+
+
+      </div>
+
+
+
+
+
+
+
 
     </div>
   </section>
   </body>
+
 </html>
